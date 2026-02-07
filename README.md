@@ -8,6 +8,10 @@ Run and manage your personal automation scripts directly from the VS Code sideba
 
 QuickIt gives you a dedicated **Activity Bar view** to create, organize, edit, run, and remove reusable scripts without jumping between terminals or project-specific task files.
 
+<div align="center">
+  <img src="media/media1.PNG" alt="QuickIt Demo" width="512"/>
+</div>
+
 ## Installation
 
 ### Option 1: Run in development mode
