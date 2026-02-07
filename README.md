@@ -36,8 +36,6 @@ Then install the generated `.vsix` file:
 4. Select the generated `.vsix` file from this repository
 5. Reload VS Code if prompted
 
-Tip: if the Extensions `...` menu item is missing in your layout, use the Command Palette flow above.
-
 ## Why QuickIt
 
 - Central script library that persists across workspaces
