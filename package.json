@@ -1,0 +1,185 @@
+{
+  "name": "quick-it",
+  "displayName": "quick-it",
+  "description": "Save and run your scripts quickly, anywhere.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FLOCK4H/quick-it.git"
+  },
+  "homepage": "https://github.com/FLOCK4H/quick-it#readme",
+  "bugs": {
+    "url": "https://github.com/FLOCK4H/quick-it/issues"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:quickIt.scripts",
+    "onCommand:quick-it.addScript",
+    "onCommand:quick-it.runScript",
+    "onCommand:quick-it.editScript",
+    "onCommand:quick-it.removeScript",
+    "onCommand:quick-it.openSettings"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "quickIt",
+          "title": "QuickIt",
+          "icon": "media/quick-it-logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "quickIt": [
+        {
+          "id": "quickIt.scripts",
+          "name": "Scripts"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "quick-it.addScript",
+        "title": "Add Script",
+        "category": "QuickIt",
+        "icon": {
+          "light": "media/light/add.svg",
+          "dark": "media/dark/add.svg"
+        }
+      },
+      {
+        "command": "quick-it.openSettings",
+        "title": "Open Settings",
+        "category": "QuickIt",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "quick-it.runScript",
+        "title": "Run Script",
+        "category": "QuickIt",
+        "icon": {
+          "light": "media/light/run.svg",
+          "dark": "media/dark/run.svg"
+        }
+      },
+      {
+        "command": "quick-it.editScript",
+        "title": "Edit Script",
+        "category": "QuickIt",
+        "icon": {
+          "light": "media/light/edit.svg",
+          "dark": "media/dark/edit.svg"
+        }
+      },
+      {
+        "command": "quick-it.removeScript",
+        "title": "Remove Script",
+        "category": "QuickIt",
+        "icon": {
+          "light": "media/light/remove.svg",
+          "dark": "media/dark/remove.svg"
+        }
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "quick-it.addScript",
+          "when": "view == quickIt.scripts",
+          "group": "navigation@1"
+        },
+        {
+          "command": "quick-it.openSettings",
+          "when": "view == quickIt.scripts",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "quick-it.runScript",
+          "when": "view == quickIt.scripts && viewItem == quickIt.script",
+          "group": "inline@1"
+        },
+        {
+          "command": "quick-it.editScript",
+          "when": "view == quickIt.scripts && viewItem == quickIt.script",
+          "group": "inline@2"
+        },
+        {
+          "command": "quick-it.removeScript",
+          "when": "view == quickIt.scripts && viewItem == quickIt.script",
+          "group": "inline@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "QuickIt",
+      "properties": {
+        "quickIt.scriptDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Optional script storage directory. Leave blank to use VS Code global storage.",
+          "scope": "machine"
+        },
+        "quickIt.interpreters.powershell": {
+          "type": "string",
+          "default": "",
+          "description": "Interpreter command for PowerShell scripts (.ps1). Example: pwsh",
+          "scope": "machine"
+        },
+        "quickIt.interpreters.bash": {
+          "type": "string",
+          "default": "",
+          "description": "Interpreter command for Bash and Zsh scripts (.sh, .zsh). Example: bash",
+          "scope": "machine"
+        },
+        "quickIt.interpreters.python": {
+          "type": "string",
+          "default": "",
+          "description": "Interpreter command for Python scripts (.py). Example: python",
+          "scope": "machine"
+        },
+        "quickIt.interpreters.node": {
+          "type": "string",
+          "default": "",
+          "description": "Interpreter command for JavaScript scripts (.js). Example: node",
+          "scope": "machine"
+        },
+        "quickIt.interpreters.tsNode": {
+          "type": "string",
+          "default": "",
+          "description": "Interpreter command for TypeScript scripts (.ts). Example: ts-node",
+          "scope": "machine"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.105.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.54.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  },
+  "overrides": {
+    "diff": "^8.0.3"
+  }
+}
