@@ -1,7 +1,9 @@
 {
   "name": "quick-it",
+  "publisher": "flock4h",
   "displayName": "quick-it",
   "description": "Save and run your scripts quickly, anywhere.",
+  "icon": "media/quick-it-logo-white.png",
   "version": "0.0.1",
   "repository": {
     "type": "git",
@@ -32,7 +34,7 @@
         {
           "id": "quickIt",
           "title": "QuickIt",
-          "icon": "media/quick-it-logo.svg"
+          "icon": "media/quick-it-logo.png"
         }
       ]
     },
@@ -49,10 +51,7 @@
         "command": "quick-it.addScript",
         "title": "Add Script",
         "category": "QuickIt",
-        "icon": {
-          "light": "media/light/add.svg",
-          "dark": "media/dark/add.svg"
-        }
+        "icon": "$(add)"
       },
       {
         "command": "quick-it.openSettings",
@@ -64,28 +63,19 @@
         "command": "quick-it.runScript",
         "title": "Run Script",
         "category": "QuickIt",
-        "icon": {
-          "light": "media/light/run.svg",
-          "dark": "media/dark/run.svg"
-        }
+        "icon": "$(play)"
       },
       {
         "command": "quick-it.editScript",
         "title": "Edit Script",
         "category": "QuickIt",
-        "icon": {
-          "light": "media/light/edit.svg",
-          "dark": "media/dark/edit.svg"
-        }
+        "icon": "$(edit)"
       },
       {
         "command": "quick-it.removeScript",
         "title": "Remove Script",
         "category": "QuickIt",
-        "icon": {
-          "light": "media/light/remove.svg",
-          "dark": "media/dark/remove.svg"
-        }
+        "icon": "$(trash)"
       }
     ],
     "menus": {
