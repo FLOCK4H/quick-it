@@ -14,7 +14,15 @@ QuickIt gives you a dedicated **Activity Bar view** to create, organize, edit, r
 
 ## Installation
 
-### Option 1: Run in development mode
+### Option 1: Compiled Binary
+
+1. Download [the extension](https://github.com/FLOCK4H/quick-it/releases/download/0.0.1/quick-it-0.0.1.vsix)
+2. Open VS Code
+3. Open the Command Palette (`Ctrl+Shift+P`)
+4. Run `Extensions: Install from VSIX...`
+5. Select the downloaded `.vsix` file
+
+### Option 2: Run in development mode
 
 ```bash
 npm install
@@ -24,7 +32,7 @@ npm run compile
 Open the project in VS Code and press `F5` (Run Extension).  
 QuickIt will load in a new Extension Development Host window.
 
-### Option 2: Install from a VSIX package
+### Option 3: Install from a VSIX package
 
 ```bash
 npm install
