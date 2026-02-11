@@ -4,7 +4,7 @@
   "displayName": "quick-it",
   "description": "Save and run your scripts quickly, anywhere.",
   "icon": "media/quick-it-logo-white.png",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/FLOCK4H/quick-it.git"

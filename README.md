@@ -16,7 +16,7 @@ QuickIt gives you a dedicated **Activity Bar view** to create, organize, edit, r
 
 ### Option 1: Compiled Binary
 
-1. Download [the extension](https://github.com/FLOCK4H/quick-it/releases/download/0.0.1/quick-it-0.0.1.vsix)
+1. Download [the extension](https://github.com/FLOCK4H/quick-it/releases/download/0.0.2/quick-it-0.0.2.vsix)
 2. Open VS Code
 3. Open the Command Palette (`Ctrl+Shift+P`)
 4. Run `Extensions: Install from VSIX...`

@@ -221,6 +221,31 @@ export function activate(context: vscode.ExtensionContext): QuickItApi {
 
 	const scriptsTreeProvider = new ScriptsTreeProvider(getScriptsDirectory, resolveDescriptorForUri);
 	context.subscriptions.push(vscode.window.registerTreeDataProvider('quickIt.scripts', scriptsTreeProvider));
+	let scriptsDirectoryWatcher: vscode.FileSystemWatcher | undefined;
+
+	const watchScriptsDirectory = async (): Promise<void> => {
+		if (scriptsDirectoryWatcher) {
+			scriptsDirectoryWatcher.dispose();
+			scriptsDirectoryWatcher = undefined;
+		}
+
+		try {
+			const scriptsDirectory = await getScriptsDirectory();
+			if (scriptsDirectory.scheme !== 'file') {
+				return;
+			}
+
+			const watcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(scriptsDirectory.fsPath, '*'));
+			const refreshTree = (): void => scriptsTreeProvider.refresh();
+			watcher.onDidCreate(refreshTree);
+			watcher.onDidChange(refreshTree);
+			watcher.onDidDelete(refreshTree);
+			scriptsDirectoryWatcher = watcher;
+			context.subscriptions.push(watcher);
+		} catch (error) {
+			console.error(`[QuickIt] Failed to watch scripts directory: ${toErrorMessage(error)}`);
+		}
+	};
 
 	const addScriptCommand = vscode.commands.registerCommand('quick-it.addScript', async () => {
 		try {
@@ -373,6 +398,10 @@ export function activate(context: vscode.ExtensionContext): QuickItApi {
 		scriptsTreeProvider.refresh();
 	});
 
+	const createSubscription = vscode.workspace.onDidCreateFiles(() => {
+		scriptsTreeProvider.refresh();
+	});
+
 	const deleteSubscription = vscode.workspace.onDidDeleteFiles(() => {
 		scriptsTreeProvider.refresh();
 	});
@@ -383,6 +412,7 @@ export function activate(context: vscode.ExtensionContext): QuickItApi {
 		}
 
 		scriptsTreeProvider.refresh();
+		void watchScriptsDirectory();
 	});
 
 	context.subscriptions.push(
@@ -393,11 +423,13 @@ export function activate(context: vscode.ExtensionContext): QuickItApi {
 		removeScriptCommand,
 		saveSubscription,
 		renameSubscription,
+		createSubscription,
 		deleteSubscription,
 		configChangeSubscription
 	);
 
 	void ensureScriptsDirectoryExists(getScriptsDirectory);
+	void watchScriptsDirectory();
 	void showSafetyNoticeOnce(context);
 
 	const handleDocumentSaved = async (document: vscode.TextDocument): Promise<void> => {
